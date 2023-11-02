@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Service
 public class ExcelService {
-    FileInputStream archivoExcel = new FileInputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/DataBase.xlsx/");
+    FileInputStream archivoExcel = new FileInputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/database.xlsm/");
     XSSFWorkbook workbook = new XSSFWorkbook(archivoExcel);
     Sheet stock = workbook.getSheetAt(0);
     Sheet sales = workbook.getSheetAt(1);
@@ -29,10 +29,10 @@ public class ExcelService {
         boolean encontrado;
         try {
 
-            int columnaId = 0;
-            int columnaName = 1;
-            int columnaValue = 2;
-            int columnaSize = 3;
+            int columnaId = 2;
+            int columnaName = 0;
+            int columnaValue = 3;
+            int columnaSize = 1;
 
             encontrado = false;
 
@@ -61,7 +61,7 @@ public class ExcelService {
 
             if (encontrado) {
                 // Guarda los cambios en el archivo Excel
-                FileOutputStream salida = new FileOutputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/DataBase.xlsx/");
+                FileOutputStream salida = new FileOutputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/database.xlsm/");
                 workbook.write(salida);
                 salida.close();
                 System.out.println("Fila eliminada con éxito.");
@@ -93,13 +93,13 @@ public class ExcelService {
 // Establece la fecha y hora actual en la celda
             dateTimeCell.setCellValue(fechaHoraActual);
 
-            newRow.createCell(1).setCellValue(modelProduct.getId());
-            newRow.createCell(2).setCellValue(modelProduct.getNameClothe());
-            newRow.createCell(3).setCellValue(modelProduct.getValue());
-            newRow.createCell(4).setCellValue(modelProduct.getSizeClothe());
+            newRow.createCell(6).setCellValue(modelProduct.getId());
+            newRow.createCell(1).setCellValue(modelProduct.getNameClothe());
+            newRow.createCell(2).setCellValue(modelProduct.getValue());
+            newRow.createCell(3).setCellValue(modelProduct.getSizeClothe());
             newRow.createCell(5).setCellValue(modelProduct.getBox());
             // Guarda los cambios en el archivo Excel
-            FileOutputStream salida = new FileOutputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/DataBase.xlsx/");
+            FileOutputStream salida = new FileOutputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/database.xlsm/");
             workbook.write(salida);
             salida.close();
             System.out.println("Datos insertados con éxito.");
@@ -133,7 +133,7 @@ public class ExcelService {
             newRow.createCell(4).setCellValue(modelSale.getTotal());
             newRow.createCell(5).setCellValue(modelSale.getEfectivoEntregado());
             // Guarda los cambios en el archivo Excel
-            FileOutputStream salida = new FileOutputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/DataBase.xlsx/");
+            FileOutputStream salida = new FileOutputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/database.xlsm/");
             workbook.write(salida);
             salida.close();
             System.out.println("Datos insertados con éxito.");
