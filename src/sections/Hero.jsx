@@ -17,12 +17,12 @@ const Hero = () => {
   const [nombreComprador, setNombreComprador] = useState('');
   const [numeroIdentificacion, setNumeroIdentificacion] = useState('');
 
-  
+
 
   const handleProductIdChange = (event) => {
     const newProductId = event.target.value;
     setProductId(newProductId);
-    axios.get(`http://localhost:8080/api/products/${newProductId}`)
+    axios.get(`http://localhost:8081/api/products/${newProductId}`)
       .then((response) => {
         setProduct(response.data);
         setTableData([...tableData, response.data]);
@@ -56,7 +56,7 @@ const Hero = () => {
       numeroIdentificacion,
       efectivoEntregado,
       cambio,
-      totalValue
+      totalValue,
       // Otras propiedades que desees enviar
     };
 
@@ -64,15 +64,15 @@ const Hero = () => {
       const value = event.target.value;
       setNombreComprador(value);
     };
-    
+
     const handleNumeroIdentificacionChange = (event) => {
       const value = event.target.value;
       setNumeroIdentificacion(value);
     };
-    
+
 
     // Realiza una solicitud POST al backend
-    axios.post('http://localhost:8080/api/venta', dataSale)
+    axios.post('http://localhost:8081/api/venta', dataSale)
       .then((response) => {
         // Maneja la respuesta del servidor (éxito)
         console.log('Venta exitosa:', response.data);
@@ -88,12 +88,12 @@ const Hero = () => {
     const value = event.target.value;
     setNombreComprador(value);
   };
-  
+
   const handleNumeroIdentificacionChange = (event) => {
     const value = event.target.value;
     setNumeroIdentificacion(value);
   };
-  
+
 
   return (
     <div>
@@ -137,7 +137,7 @@ const Hero = () => {
                         <th scope="col" className="px-4 py-2 font-medium text-white whitespace-nowrap dark:text-white">
                           Valor
                         </th>
-                      
+
                       </tr>
                     </thead>
                     <tbody>
@@ -147,12 +147,12 @@ const Hero = () => {
                             {product.nameClothe}
                           </th>
                           <td className="px-4 py-2 font-medium text-white whitespace-nowrap dark:text-white">
-                          {product.sizeClothe}
+                            {product.sizeClothe}
                           </td>
                           <td className="px-4 py-2 font-medium text-white whitespace-nowrap dark:text-white">
                             {product.value}
                           </td>
-                        
+
                         </tr>
                       ))}
                     </tbody>
@@ -183,28 +183,31 @@ const Hero = () => {
                     <form>
                       <div className="mb-2">
                         <label for="email" className="block mb-2 text-base font-medium text-gray-900 dark:text-gray-800">Nombre del Comprador</label>
-                        <input type="email"  id="nombreComprador" name="nombreComprador" value={nombreComprador} onChange={handleNombreCompradorChange}   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
+                        <input type="email" id="nombreComprador" name="nombreComprador" value={nombreComprador} onChange={handleNombreCompradorChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
                       </div>
                       <div className="mb-2">
                         <label for="email" className="block mb-2 text-base font-medium text-gray-900 dark:text-gray-800">Numero de Identificacion</label>
-                        <input type="email"   id="numeroIdentificacion" name="numeroIdentificacion" value={numeroIdentificacion} onChange={handleNumeroIdentificacionChange } className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
+                        <input type="email" id="numeroIdentificacion" name="numeroIdentificacion" value={numeroIdentificacion} onChange={handleNumeroIdentificacionChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
                       </div>
                       <div className="mb-2">
                         <label for="email" className="block mb-2 text-base font-medium text-gray-900 dark:text-gray-800">Total de Compra</label>
-                        <input type="email" id="totalValue" value={totalValue} readOnly  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
+                        <input type="email" id="totalValue" value={totalValue} readOnly className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
                       </div>
                       <div className="mb-2">
                         <label for="email" className="block mb-2 text-base font-medium text-gray-900 dark:text-gray-800">Efectivo Entregado</label>
-                        <input type="email" id="efectivo-entregado"  value={efectivoEntregado} onChange={handleEfectivoEntregadoChange}  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
+                        <input type="email" id="efectivo-entregado" value={efectivoEntregado} onChange={handleEfectivoEntregadoChange} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
                       </div>
                       <div className="mb-2">
                         <label for="email" className="block mb-2 text-base font-medium text-gray-900 dark:text-gray-800">Cambio</label>
-                        <input type="email" id="cambio"  value={cambio}   readOnly className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
+                        <input type="email" id="cambio" value={cambio} readOnly className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-300 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-900 dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="$" required />
                       </div>
 
 
 
-                      <button type="submit" onClick={handleVenderClick} className="text-white bg-green-600 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-green-600 dark:focus:ring-blue-800">Facturar</button>
+                      <button type="submit" onClick={() => {
+                        window.location.reload();
+                        handleVenderClick();
+                      }} className="text-white bg-green-600 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-green-600 dark:focus:ring-blue-800">Facturar</button>
                     </form>
                   </div>
                 </div>
