@@ -16,6 +16,7 @@ public class ExcelService {
     Sheet stock = workbook.getSheetAt(0);
     Sheet sales = workbook.getSheetAt(1);
     Sheet Factory = workbook.getSheetAt(2);
+    String root = "D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/database.xlsm/"; //Aqui Cambia la ruta
 
     //    Sheet formules = workbook.getSheetAt(2);
     public ExcelService() throws IOException {
@@ -61,7 +62,7 @@ public class ExcelService {
 
             if (encontrado) {
                 // Guarda los cambios en el archivo Excel
-                FileOutputStream salida = new FileOutputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/database.xlsm/");
+                FileOutputStream salida = new FileOutputStream(root);
                 workbook.write(salida);
                 salida.close();
                 System.out.println("Fila eliminada con éxito.");
@@ -99,7 +100,7 @@ public class ExcelService {
             newRow.createCell(3).setCellValue(modelProduct.getSizeClothe());
             newRow.createCell(5).setCellValue(modelProduct.getBox());
             // Guarda los cambios en el archivo Excel
-            FileOutputStream salida = new FileOutputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/database.xlsm/");
+            FileOutputStream salida = new FileOutputStream(root);
             workbook.write(salida);
             salida.close();
             System.out.println("Datos insertados con éxito.");
@@ -132,7 +133,7 @@ public class ExcelService {
             newRow.createCell(3).setCellValue(modelSale.getTotal());
             newRow.createCell(4).setCellValue(modelSale.getEfectivoEntregado());
             // Guarda los cambios en el archivo Excel
-            FileOutputStream salida = new FileOutputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/database.xlsm/");
+            FileOutputStream salida = new FileOutputStream(root);
             workbook.write(salida);
             salida.close();
             System.out.println("Datos insertados con éxito.");
