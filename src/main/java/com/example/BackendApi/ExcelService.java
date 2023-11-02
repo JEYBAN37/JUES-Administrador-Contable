@@ -127,11 +127,10 @@ public class ExcelService {
 // Establece la fecha y hora actual en la celda
             dateTimeCell.setCellValue(fechaHoraActual);
 
-            newRow.createCell(1).setCellValue(modelSale.getProductId());
-            newRow.createCell(2).setCellValue(modelSale.getNombreComprador());
-            newRow.createCell(3).setCellValue(modelSale.getNumeroIdentificacion());
-            newRow.createCell(4).setCellValue(modelSale.getTotal());
-            newRow.createCell(5).setCellValue(modelSale.getEfectivoEntregado());
+            newRow.createCell(1).setCellValue(modelSale.getNombreComprador());
+            newRow.createCell(2).setCellValue(modelSale.getNumeroIdentificacion());
+            newRow.createCell(3).setCellValue(modelSale.getTotal());
+            newRow.createCell(4).setCellValue(modelSale.getEfectivoEntregado());
             // Guarda los cambios en el archivo Excel
             FileOutputStream salida = new FileOutputStream("D:/Portafolio Esteban/JUES/BackendApi/src/main/resources/databaseEcxel/database.xlsm/");
             workbook.write(salida);

@@ -13,19 +13,6 @@ public class EcxelController {
     @Autowired
     private ExcelService excelService;
 
-    @GetMapping("/ruta")
-    public String obtenerInformacion() {
-        return "Esta es la información que se retornará.";
-    }
-
-    @GetMapping("/managge")
-    public String obtenerDatosFilaUno() throws IOException {
-//Hacer Frontend
-        ModelProduct modelProduct = excelService.verifyClothe(1358);
-        if (modelProduct != null){ return "optenido" + modelProduct.getNameClothe();}
-        return "No hay nada";
-    }
-
     @GetMapping("/products/{id}")
     public ResponseEntity<ModelProduct> getProductById(@PathVariable int id) throws IOException {
         ModelProduct modelProduct = excelService.verifyClothe(id);
